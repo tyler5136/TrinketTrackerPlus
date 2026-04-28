@@ -1,7 +1,24 @@
+package-as: TrinketTrackerPlus
+
 externals:
-libs/LibStub: # required dependency unless namespaced
-url: https://repos.curseforge.com/wow/libstub/trunk
-tag: 1.0
-libs/LibEditMode:
-url: https://github.com/p3lim-wow/LibEditMode
-tag: latest
+  libs/LibStub:
+    url: https://repos.curseforge.com/wow/libstub/trunk
+    tag: 1.0
+  libs/LibEditMode:
+    url: https://github.com/p3lim-wow/LibEditMode
+    tag: latest
+
+ignore:
+  - .github
+  - .gitignore
+  - Media/icon_aurs_backup.png
+  - Media/icon_256.png
+  - Media/icon_64.png
+  - Media/make_logo.py
+  - "*.zip"
+
+manual-changelog:
+  filename: CHANGELOG.md
+  markup-type: markdown
+
+license-output: LICENSE
