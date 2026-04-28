@@ -48,10 +48,33 @@ function TT.UpdateTrinket(frame, slotID)
     local start, duration = GetInventoryItemCooldown("player", slotID)
     if start and duration then
       frame.cooldown:SetCooldown(start, duration)
+
+      local minCD = TTDB.alertMinCD or 30
+      local remaining = (start > 0 and duration > 0) and (start + duration - GetTime()) or 0
+      local onCD = remaining > 0.1 and duration >= minCD
+
+      if frame._ttWasOnCD and not onCD and (frame._ttLastDuration or 0) >= minCD then
+        if TT.FireAlert then TT.FireAlert(frame) end
+        if TTDB.combatAlert and UnitAffectingCombat("player") then
+          frame._ttCombatGlow = true
+        end
+      end
+      frame._ttWasOnCD = onCD
+      if onCD then
+        frame._ttLastDuration = duration
+        if frame._ttCombatGlow then
+          if TT.HideAlertGlow then TT.HideAlertGlow(frame) end
+          frame._ttCombatGlow = nil
+        end
+      elseif TTDB.combatAlert and UnitAffectingCombat("player") and frame._ttCombatGlow then
+        if TT.ShowAlertGlow then TT.ShowAlertGlow(frame) end
+      end
     end
 
     frame:Show()
   else
+    if TT.HideAlertGlow then TT.HideAlertGlow(frame) end
+    frame._ttWasOnCD = nil
     frame:Hide()
   end
 end

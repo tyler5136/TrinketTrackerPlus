@@ -1,0 +1,16 @@
+## Interface: 120005
+## Title: |cff00d9ffTrinket Tracker Plus|r
+## Notes: Trinket tracker with blacklist, on-use filtering, ready alerts, and tooltips
+## Author: Miboi (original contribution by Aurs)
+## Version: 1.9.2
+## IconTexture: Interface\AddOns\TrinketTrackerPlus\Media\icon.png
+## SavedVariables: TTDB
+
+# Libs
+libs\LibStub\LibStub.lua
+libs\LibEditMode\embed.xml
+
+# Main files
+Core.lua
+Functions.lua
+Options.lua
